@@ -10,7 +10,7 @@ public class LoginController {
 	@GetMapping("/login")
 	public String getLogin(Model model) {
 		// login. html に 画面 遷移
-		return "login/ login";
+		return "login/login";
 	}
 	// ログイン 画面 の POST 用 コントローラー
 	@PostMapping("/login")
