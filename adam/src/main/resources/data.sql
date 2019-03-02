@@ -4,4 +4,4 @@ VALUES(1, '山田太郎', 30);
 
 /* ユーザーマスタのデータ（ADMIN権限） */
 INSERT INTO m_user (user_id, password, user_name, birthday, age, marriage, role)
-VALUES('yamada@xxx.co.jp', 'password', '山田太郎', '1990-01-01', 28, false, 'ROLE_ADMIN');
+VALUES('shigeaki52@gmail.com', 'Shige', '竹村成顕', '1991-05-02', 27, false, 'ROLE_ADMIN');
