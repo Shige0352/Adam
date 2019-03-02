@@ -1,4 +1,4 @@
-package com.example.demo.login.controller.domain.model;
+package com.example.demo.login.domain;
 
 import java.util.Date;
 
