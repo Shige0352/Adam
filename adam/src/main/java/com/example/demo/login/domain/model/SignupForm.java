@@ -27,23 +27,24 @@ public class SignupForm {
     @NotBlank(groups = ValidGroup1.class, message = "{require_check}")
     @Length(groups = ValidGroup2.class, message = "{length_check}")
     @Pattern(regexp = "^[a-zA-Z0-9]+$", groups = ValidGroup3.class, message = "{pattern_check}")
-    private String password; // パスワード
+    private String password;
 
     //必須入力
     @NotBlank(groups = ValidGroup1.class, message = "{require_check}")
-    private String userName; // ユーザー名
+    private String userName;
 
     //必須入力
     @NotNull(groups = ValidGroup1.class, message = "{require_check}")
     @DateTimeFormat(pattern = "yyyy/MM/dd")
-    private Date birthday; // 誕生日
+    private Date birthday;
 
     //値が20から100まで
+    @NotNull(groups = ValidGroup1.class, message = "{require_check}")
     @Min(value = 20, groups = ValidGroup2.class, message = "{min_check}")
     @Max(value = 100, groups = ValidGroup2.class, message = "{max_check}")
-    private int age; // 年齢
+    private int age;
 
     //falseのみ可能
     @AssertFalse(groups = ValidGroup2.class, message = "{false_check}")
-    private boolean marriage; // 結婚ステータス
+    private boolean marriage;
 }

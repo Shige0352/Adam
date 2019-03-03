@@ -91,18 +91,14 @@ public class HomeController {
 
         // ユーザーIDのチェック
         if (userId != null && userId.length() > 0) {
-
-            // ユーザー情報を取得
             User user = userService.selectOne(userId);
 
-            // Userクラスをフォームクラスに変換
-            form.setUserId(user.getUserId()); //ユーザーID
-            form.setUserName(user.getUserName()); //ユーザー名
-            form.setBirthday(user.getBirthday()); //誕生日
-            form.setAge(user.getAge()); //年齢
-            form.setMarriage(user.isMarriage()); //結婚ステータス
+            form.setUserId(user.getUserId());
+            form.setUserName(user.getUserName());
+            form.setBirthday(user.getBirthday());
+            form.setAge(user.getAge());
+            form.setMarriage(user.isMarriage());
 
-            // Modelに登録
             model.addAttribute("signupForm", form);
         }
 
@@ -119,7 +115,6 @@ public class HomeController {
         //Userインスタンスの生成
         User user = new User();
 
-        //フォームクラスをUserクラスに変換
         user.setUserId(form.getUserId());
         user.setPassword(form.getPassword());
         user.setUserName(form.getUserName());

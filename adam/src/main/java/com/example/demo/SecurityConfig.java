@@ -59,12 +59,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // ログイン不要ページの設定
         http
             .authorizeRequests()
-                .antMatchers("/webjars/**").permitAll() //webjarsへアクセス許可
-                .antMatchers("/css/**").permitAll() //cssへアクセス許可
-                .antMatchers("/login").permitAll() //ログインページは直リンクOK
-                .antMatchers("/signup").permitAll() //ユーザー登録画面は直リンクOK
-                .antMatchers("/admin").hasAuthority("ROLE_ADMIN") //アドミンユーザーに許可
-                .anyRequest().authenticated(); //それ以外は直リンク禁止
+                .antMatchers("/webjars/**").permitAll()
+                .antMatchers("/css/**").permitAll()
+                .antMatchers("/login").permitAll()
+                .antMatchers("/signup").permitAll()
+                .antMatchers("/admin").hasAuthority("ROLE_ADMIN")
+                .anyRequest().authenticated();
 
         //ログイン処理
         http
@@ -79,7 +79,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //ログアウト処理
         http
                 .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout")) //
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/login");
 
