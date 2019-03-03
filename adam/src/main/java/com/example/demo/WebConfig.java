@@ -6,33 +6,25 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
-
 @Configuration
 public class WebConfig {
-	@Bean
-	public MessageSource messageSource() {
-		ReloadableResourceBundleMessageSource bean = new ReloadableResourceBundleMessageSource();
 
+    @Bean
+    public MessageSource messageSource() {
 
-		//メッセージのプロパティファイル名（デフォルト）を指定します
-		//下記ではmessages.propertiesファイルがセットされます
-		bean.setBasename("classpath:messages");
+        ReloadableResourceBundleMessageSource bean = new ReloadableResourceBundleMessageSource();
+        bean.setBasename("classpath:messages");
+        bean.setDefaultEncoding("UTF-8");
 
+        return bean;
+    }
 
-		//メッセージプロパティの文字コードを指定します
-		bean.setDefaultEncoding("UTF-8");
+    @Bean
+    public LocalValidatorFactoryBean localValidatorFactoryBean() {
 
-		return bean;
+        LocalValidatorFactoryBean localValidatorFactoryBean = new LocalValidatorFactoryBean();
+        localValidatorFactoryBean.setValidationMessageSource(messageSource());
 
-	}
-
-	@Bean
-	public LocalValidatorFactoryBean localValidatorFactoryBean() {
-		LocalValidatorFactoryBean localValidatorFactoryBean = new LocalValidatorFactoryBean();
-		localValidatorFactoryBean.setValidationMessageSource(messageSource());
-
-		return localValidatorFactoryBean;
-
-	}
-
+        return localValidatorFactoryBean;
+    }
 }
