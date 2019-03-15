@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8"></meta>
+</head>
+<body>
+    <!-- インスタユーザーリスト -->
+    <div th:fragment="instaUserList_contents">
+        <div class="page-header">
+            <h1>インスタユーザーリスト</h1>
+        </div>
+        <table class="table table-bordered table-hover table-striped">
+            <tr >
+                <th class="info col-sm-2">userId</th>
+                <th class="info col-sm-2">post</th>
+                <th class="info col-sm-2">follow</th>
+                <th class="info col-sm-2">follower</th>
+                <th class="info col-sm-2">createdAt</th>
+            </tr>
+            <tr th:each="instaUser : ${instaUserList}">
+                <td th:text="${instaUser.userId}"></td>
+                <td th:text="${instaUser.post}"></td>
+                <td th:text="${instaUser.follow}"></td>
+                <td th:text="${instaUser.follower}"></td>
+                <td th:text="${#dates.format(instaUser.createdAt, 'YYYY/MM/dd')}"></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
