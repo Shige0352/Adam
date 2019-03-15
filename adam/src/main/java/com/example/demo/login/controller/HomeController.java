@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.demo.login.domain.model.InstaUser;
 import com.example.demo.login.domain.model.SignupForm;
 import com.example.demo.login.domain.model.User;
+import com.example.demo.login.domain.service.InstaUserServise;
 import com.example.demo.login.domain.service.UserService;
 
 
@@ -27,6 +29,10 @@ public class HomeController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    InstaUserServise instaUserServise;
+
 
     // 結婚ステータスのラジオボタン用変数
     private Map<String, String> radioMarriage;
@@ -70,7 +76,20 @@ public class HomeController {
         return "login/homeLayout";
     }
 
+    //ユーザー一覧画面のGET.
+    @GetMapping("/instaUserList")
+    public String getInstaUserList(Model model) {
 
+        model.addAttribute("contents", "login/InstauserList :: instaUserList_contents");
+
+        //ユーザーの一覧作成
+        List<InstaUser> instaUserList = instaUserServise.selectMany();
+
+        model.addAttribute("instaUserList", instaUserList);
+
+        return "login/homeLayout";
+
+    }
     //ユーザー詳細画面のGETメソッド用処理.
     @GetMapping("/userDetail/{id:.+}")
     public String getUserDetail(@ModelAttribute SignupForm form,
@@ -169,6 +188,8 @@ public class HomeController {
 
          return "redirect:/login";
     }
+
+
 
     //ユーザー一覧のCSV出力用処理.
     @GetMapping("/userList/csv")
